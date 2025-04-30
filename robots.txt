@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stem-bns.github.io/official-website/sitemap.xml

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Events - STEM Bani Sweif</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/news.css">
+    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="STEM Bani Sweif Logo" class="logo-img">
+                <h1>STEM<br>BNS</h1>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="academics.html">Academics</a></li>
+                <li><a href="admissions.html">Admissions</a></li>
+                <li><a href="capstone.html">Capstone</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="news.html" class="active">News & Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li class="login-btn"><a href="admin/login.html"><i class="fas fa-user"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">News & Events</h1>
+                <p class="hero-subtitle">Stay Connected with STEM Bani Sweif's Latest Updates</p>
+            </div>
+            <div class="hero-background">
+                <div class="particles"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <h1 class="section-title">Events Calendar</h1>
+            
+            <div class="events-filters">
+                <div class="search-box">
+                    <input type="text" id="eventSearch" placeholder="Search events...">
+                    <button type="button" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-group">
+                    <select id="eventTypeFilter">
+                        <option value="">All Event Types</option>
+                        <option value="academic">Academic</option>
+                        <option value="social">Social</option>
+                        <option value="sports">Sports</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <select id="audienceFilter">
+                        <option value="">All Audiences</option>
+                        <option value="all">All Students</option>
+                        <option value="seniors">Senior Students</option>
+                        <option value="juniors">Junior Students</option>
+                        <option value="teachers">Teachers</option>
+                        <option value="parents">Parents</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="events-list" id="eventsList">
+                <!-- Events will be dynamically added here -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Loading events...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Template -->
+    <template id="eventTemplate">
+        <a class="event-card" href="#">
+            <div class="event-image">
+                <img src="" alt="" loading="lazy">
+            </div>
+            <div class="event-content">
+                <div class="event-meta">
+                    <span class="event-date"></span>
+                    <span class="event-time"></span>
+                </div>
+                <h2 class="event-title"></h2>
+                <p class="event-description"></p>
+                <div class="event-details">
+                    <span class="event-location"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="event-category"><i class="fas fa-tag"></i></span>
+                    <span class="event-audience"><i class="fas fa-users"></i></span>
+                </div>
+                <div class="event-actions">
+                    <div class="event-link">Learn More</div>
+                    <button class="share-btn">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </a>
+    </template>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Bani Sweif, Egypt</p>
+                    <p><i class="fas fa-phone"></i> +20 10 64803860</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bsweifsch@stembsweif.moe.edu.eg">bsweifsch@stembsweif.moe.edu.eg</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/101524117903935" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/+201064803860" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:bsweifsch@stembsweif.moe.edu.eg"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 STEM Bani Sweif. All rights reserved.</p>
+                <p class="credits">Developed by <a href="developers.html">Hamdy Abu El-Khair & Abd El-Rahman Khalaf</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBoTNNKUnlzBX0De4TOejV7nHMRq5p19z4",
+            authDomain: "events-95194.firebaseapp.com",
+            projectId: "events-95194",
+            storageBucket: "events-95194.firebasestorage.app",
+            messagingSenderId: "360786954703",
+            appId: "1:360786954703:web:0322fe9bb10138618a6aba",
+            measurementId: "G-N68YRLHRTK"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // Load events when page loads
+        document.addEventListener('DOMContentLoaded', loadEvents);
+
+        async function loadEvents() {
+            const eventsList = document.getElementById('eventsList');
+            try {
+                console.log("Starting to load events...");
+                
+                // First, check if Firebase is initialized
+                if (!app) {
+                    throw new Error("Firebase not initialized");
+                }
+
+                const eventsRef = collection(db, 'events');
+                console.log("Collection reference created");
+
+                // Create query - remove the status filter temporarily for testing
+                const q = query(eventsRef, 
+                    orderBy("date", "desc")
+                );
+                console.log("Query created");
+
+                // Get documents
+                const querySnapshot = await getDocs(q);
+                console.log("Query executed, documents retrieved:", querySnapshot.size);
+
+                // Clear loading message
+                eventsList.innerHTML = '';
+
+                if (querySnapshot.empty) {
+                    eventsList.innerHTML = '<div class="no-events">No events found. Check back later for updates!</div>';
+                    return;
+                }
+
+                // Process documents
+                querySnapshot.forEach((doc) => {
+                    const event = { id: doc.id, ...doc.data() };
+                    console.log("Processing event:", event);  // Log entire event object
+                    const eventElement = createEventElement(event);
+                    eventsList.appendChild(eventElement);
+                });
+
+            } catch (error) {
+                console.error("Detailed error:", error);
+                let errorMessage = "Error loading events. ";
+                
+                // Provide more specific error messages
+                if (error.code === 'permission-denied') {
+                    errorMessage += "Access to events is restricted. Please try again later.";
+                } else if (error.code === 'not-found') {
+                    errorMessage += "The events collection could not be found.";
+                } else if (error.message.includes('Firebase')) {
+                    errorMessage += "There was a problem connecting to the database.";
+                } else {
+                    errorMessage += "Please check your internet connection and try again.";
+                }
+
+                eventsList.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        ${errorMessage}
+                        <br><br>
+                        <small>Technical details: ${error.message}</small>
+                        <br><br>
+                        <button onclick="window.location.reload()" class="retry-btn">
+                            <i class="fas fa-sync"></i> Try Again
+                        </button>
+                    </div>`;
+            }
+        }
+
+        function getImageUrl(url) {
+            if (!url) return 'images/event-placeholder.jpg';
+            
+            // If it's a full URL (e.g., from imgur or other hosting)
+            if (url.startsWith('http')) return url;
+            
+            // If it's a relative path, use it directly
+            return url;
+        }
+
+        function createEventElement(event) {
+            const template = document.getElementById('eventTemplate');
+            const eventElement = template.content.cloneNode(true);
+            try {
+                // Set the card link
+                const card = eventElement.querySelector('.event-card');
+                card.href = `event-details.html?id=${event.id}`;
+
+                // Set event image
+                const imgElement = eventElement.querySelector('.event-image img');
+                imgElement.src = event.imageUrl || 'images/event-placeholder.jpg';
+                imgElement.alt = event.title;
+                imgElement.onerror = function() {
+                    this.src = 'images/event-placeholder.jpg';
+                };
+
+                // Set event date and time
+                let date;
+                if (event.date && typeof event.date === 'object' && event.date.toDate) {
+                    date = event.date.toDate();
+                } else if (event.date && event.date.seconds) {
+                    date = new Date(event.date.seconds * 1000);
+                } else if (event.date instanceof Date) {
+                    date = event.date;
+                } else if (typeof event.date === 'string') {
+                    date = new Date(event.date);
+                } else {
+                    date = new Date();
+                }
+                eventElement.querySelector('.event-date').textContent = date.toLocaleDateString();
+                eventElement.querySelector('.event-time').textContent = date.toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                // Set other event details
+                eventElement.querySelector('.event-title').textContent = event.title || 'Untitled Event';
+                eventElement.querySelector('.event-description').textContent = event.summary || event.description || '';
+                eventElement.querySelector('.event-location').appendChild(
+                    document.createTextNode(event.location || 'TBA')
+                );
+                eventElement.querySelector('.event-category').appendChild(
+                    document.createTextNode(event.category || 'General')
+                );
+                eventElement.querySelector('.event-audience').appendChild(
+                    document.createTextNode(event.audience || 'All')
+                );
+
+                // Setup share button
+                const shareBtn = eventElement.querySelector('.share-btn');
+                shareBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    shareEvent(event);
+                });
+            } catch (error) {
+                console.error("Error creating event element:", error);
+            }
+            return eventElement;
+        }
+
+        function shareEvent(event) {
+            const url = `${window.location.origin}/event-details.html?id=${event.id}`;
+            const title = event.title;
+            const text = event.summary || '';
+
+            if (navigator.share) {
+                navigator.share({ title, text, url })
+                    .catch(console.error);
+            } else {
+                window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+                    '_blank'
+                );
+            }
+        }
+
+        // Setup search and filters
+        const searchInput = document.getElementById('eventSearch');
+        const typeFilter = document.getElementById('eventTypeFilter');
+        const audienceFilter = document.getElementById('audienceFilter');
+
+        searchInput.addEventListener('input', filterEvents);
+        typeFilter.addEventListener('change', filterEvents);
+        audienceFilter.addEventListener('change', filterEvents);
+
+        function filterEvents() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedType = typeFilter.value.toLowerCase();
+            const selectedAudience = audienceFilter.value.toLowerCase();
+            
+            const events = document.querySelectorAll('.event-card');
+            
+            events.forEach(event => {
+                const title = event.querySelector('.event-title').textContent.toLowerCase();
+                const description = event.querySelector('.event-description').textContent.toLowerCase();
+                const type = event.querySelector('.event-category').textContent.toLowerCase();
+                const audience = event.querySelector('.event-audience').textContent.toLowerCase();
+                
+                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                const matchesType = !selectedType || type.includes(selectedType);
+                const matchesAudience = !selectedAudience || audience.includes(selectedAudience);
+                
+                event.style.display = 
+                    matchesSearch && matchesType && matchesAudience ? 'flex' : 'none';
+            });
+        }
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html> 

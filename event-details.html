@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - STEM BNS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="STEM Bani Sweif Logo" class="logo-img">
+                <h1>STEM<br>BNS</h1>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="academics.html">Academics</a></li>
+                <li><a href="admissions.html">Admissions</a></li>
+                <li><a href="capstone.html">Capstone</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="news.html" class="active">News & Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li class="login-btn"><a href="admin/login.html"><i class="fas fa-user"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Event Details Section -->
+    <section class="event-details">
+        <div class="container">
+            <div id="eventContent" class="event-content">
+                <div class="event-image">
+                    <img id="eventImage" src="images/placeholder.jpg" alt="Event Image" loading="lazy">
+                </div>
+                <div class="event-info">
+                    <h1 id="eventTitle">Loading event...</h1>
+                    <div class="event-metadata">
+                        <p><i class="far fa-calendar"></i> <span id="eventDate">Loading...</span></p>
+                        <p><i class="far fa-clock"></i> <span id="eventTime">Loading...</span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span id="eventLocation">Loading...</span></p>
+                        <p><i class="fas fa-tag"></i> <span id="eventType">Loading...</span></p>
+                        <p><i class="fas fa-users"></i> <span id="eventAudience">Loading...</span></p>
+                    </div>
+                    <div class="event-description" id="eventDescription">
+                        Loading event description...
+                    </div>
+                    <div class="event-actions">
+                        <button id="interestedBtn" class="btn interested-btn">
+                            <i class="far fa-star"></i> I'm Interested
+                            <span id="interestedCount">(0)</span>
+                        </button>
+                        <button id="shareBtn" class="btn share-btn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Bani Sweif, Egypt</p>
+                    <p><i class="fas fa-phone"></i> +20 10 64803860</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bsweifsch@stembsweif.moe.edu.eg">bsweifsch@stembsweif.moe.edu.eg</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/101524117903935" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/+201064803860" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:bsweifsch@stembsweif.moe.edu.eg"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 STEM Bani Sweif. All rights reserved.</p>
+                <p class="credits">Developed by <a href="developers.html">Hamdy Abu El-Khair & Abd El-Rahman Khalaf</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBoTNNKUnlzBX0De4TOejV7nHMRq5p19z4",
+            authDomain: "events-95194.firebaseapp.com",
+            projectId: "events-95194",
+            storageBucket: "events-95194.firebasestorage.app",
+            messagingSenderId: "360786954703",
+            appId: "1:360786954703:web:0322fe9bb10138618a6aba",
+            measurementId: "G-N68YRLHRTK"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // Get event ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get('id');
+
+        // Load event details
+        async function loadEventDetails() {
+            try {
+                console.log("Loading event with ID:", eventId);
+                
+                if (!eventId) {
+                    throw new Error('No event ID provided');
+                }
+
+                const eventRef = doc(db, 'events', eventId);
+                const docSnap = await getDoc(eventRef);
+
+                if (docSnap.exists()) {
+                    const eventData = { id: docSnap.id, ...docSnap.data() };
+                    console.log("Event data:", eventData);
+                    await displayEventDetails(eventData);
+                } else {
+                    throw new Error('Event not found');
+                }
+            } catch (error) {
+                console.error('Error loading event:', error);
+                document.getElementById('eventContent').innerHTML = `
+                    <div class="error-message">
+                        <h2>Error Loading Event</h2>
+                        <p>Sorry, we couldn't load the event details. Please try again later.</p>
+                        <p class="error-details">${error.message}</p>
+                        <a href="news.html" class="btn back-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Events
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Display event details
+        async function displayEventDetails(event) {
+            try {
+                // Set text content
+                document.getElementById('eventTitle').textContent = event.title;
+                
+                // Format and display date
+                let eventDate;
+                if (event.date && typeof event.date === 'object' && event.date.toDate) {
+                    eventDate = event.date.toDate();
+                } else if (event.date && event.date.seconds) {
+                    eventDate = new Date(event.date.seconds * 1000);
+                } else if (event.date instanceof Date) {
+                    eventDate = event.date;
+                } else if (typeof event.date === 'string') {
+                    eventDate = new Date(event.date);
+                } else {
+                    eventDate = new Date();
+                }
+                
+                document.getElementById('eventDate').textContent = eventDate.toLocaleDateString();
+                document.getElementById('eventTime').textContent = eventDate.toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Set other details
+                document.getElementById('eventLocation').textContent = event.location || 'TBA';
+                document.getElementById('eventType').textContent = event.category || 'General';
+                document.getElementById('eventAudience').textContent = event.audience || 'All';
+                document.getElementById('eventDescription').textContent = event.description || event.content || '';
+                
+                // Update interested count
+                const interestedCount = event.interestedCount || 0;
+                document.getElementById('interestedCount').textContent = `(${interestedCount})`;
+
+                // Set image
+                const imgElement = document.getElementById('eventImage');
+                if (event.imageUrl) {
+                    imgElement.src = event.imageUrl;
+                    imgElement.alt = event.title;
+                } else {
+                    imgElement.src = 'images/event-placeholder.jpg';
+                    imgElement.alt = 'Event placeholder image';
+                }
+
+                // Setup interested button
+                const interestedBtn = document.getElementById('interestedBtn');
+                interestedBtn.addEventListener('click', async () => {
+                    try {
+                        const eventRef = doc(db, 'events', eventId);
+                        await updateDoc(eventRef, {
+                            interestedCount: increment(1)
+                        });
+                        
+                        // Update UI
+                        const newCount = interestedCount + 1;
+                        document.getElementById('interestedCount').textContent = `(${newCount})`;
+                        interestedBtn.classList.add('active');
+                        interestedBtn.disabled = true;
+                    } catch (error) {
+                        console.error('Error updating interested count:', error);
+                        alert('Failed to update interested count. Please try again.');
+                    }
+                });
+
+                // Setup share button
+                document.getElementById('shareBtn').addEventListener('click', () => {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: event.title,
+                            text: event.description || '',
+                            url: window.location.href
+                        }).catch(console.error);
+                    } else {
+                        // Fallback to Facebook share
+                        const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+                        window.open(fbShareUrl, '_blank');
+                    }
+                });
+            } catch (error) {
+                console.error('Error displaying event details:', error);
+                throw error;
+            }
+        }
+
+        // Load event details when page loads
+        document.addEventListener('DOMContentLoaded', loadEventDetails);
+    </script>
+</body>
+</html> 

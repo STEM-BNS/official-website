@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event - STEM Bani Sweif School</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../images/logo.png" alt="STEM Bani Sweif Logo" class="logo-img">
+                <h1>Add New Event</h1>
+            </div>
+            <div class="admin-nav">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+        <div class="content-area">
+            <div class="event-form-container">
+                <!-- Alert container -->
+                <div id="alertContainer"></div>
+                
+                <form id="eventForm" class="event-form" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="action" value="create">
+                    
+                    <div class="form-section">
+                        <h2>Event Details</h2>
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" id="eventTitle" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="datetime-local" id="eventDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventLocation">Location</label>
+                            <input type="text" id="eventLocation" name="location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <textarea id="eventDescription" name="description" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Event Image</h2>
+                        <div class="form-group">
+                            <label for="eventImage">Upload Image</label>
+                            <input type="file" id="eventImage" name="image" accept="image/*">
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Additional Information</h2>
+                        <div class="form-group">
+                            <label for="eventType">Event Type</label>
+                            <select id="eventType" name="type" required>
+                                <option value="">Select Event Type</option>
+                                <option value="academic">Academic</option>
+                                <option value="social">Social</option>
+                                <option value="sports">Sports</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventAudience">Target Audience</label>
+                            <select id="eventAudience" name="audience" required>
+                                <option value="">Select Audience</option>
+                                <option value="all">All Students</option>
+                                <option value="seniors">Senior Students</option>
+                                <option value="juniors">Junior Students</option>
+                                <option value="teachers">Teachers</option>
+                                <option value="parents">Parents</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i>
+                            Save Event
+                        </button>
+                        <a href="dashboard.html" class="cancel-btn">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Image preview
+        document.getElementById('eventImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').innerHTML = 
+                        `<img src="${e.target.result}" alt="Event Image Preview">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Show alert function
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+            
+            // Auto-hide the alert after 5 seconds
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Form submission
+        document.getElementById('eventForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const formData = new FormData(this);
+                
+                const response = await fetch('events.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert(result.message, 'success');
+                    // Redirect to dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+                } else {
+                    showAlert(result.message || 'Error creating event', 'danger');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('Error creating event. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html> 

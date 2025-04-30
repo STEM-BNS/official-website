@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <title>Our Developers - STEM BNS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .developers-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+        }
+        .developers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .developers-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .developers-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5em;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .developers-header p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2em;
+            color: #bdc3c7;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .developers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .developer-card {
+            background: #34495e;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .developer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        .developer-image {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            border-bottom: 4px solid #3498db;
+        }
+        .developer-info {
+            padding: 30px;
+            text-align: center;
+            background: #34495e;
+        }
+        .developer-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .developer-info p {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #bdc3c7;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .developer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .developer-social a {
+            color: #ffffff;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            background: #2c3e50;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .developer-social a:hover {
+            color: #ffffff;
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        .thank-you {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #3498db;
+            color: white;
+            border-radius: 15px;
+        }
+        .thank-you h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .thank-you p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="STEM Bani Sweif Logo" class="logo-img">
+                <h1>STEM BNS</h1>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="academics.html">Academics</a></li>
+                <li><a href="admissions.html">Admissions</a></li>
+                <li><a href="capstone.html">Capstone</a></li>
+                <li><a href="journal.html">Journal</a></li>
+                <li><a href="news.html">News & Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li class="login-btn"><a href="admin/login.html"><i class="fas fa-user"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Developers Section -->
+    <section class="developers-section">
+        <div class="developers-container">
+            <div class="developers-header">
+                <h1>Meet Our Developers</h1>
+                <p>We extend our heartfelt gratitude to these talented developers who brought the STEM BNS website to life. Their dedication and expertise have made this platform possible.</p>
+            </div>
+            <div class="developers-grid">
+                <div class="developer-card">
+                    <img src="images/developers/hamdy.jpg" alt="Hamdy Abu El-Khair" class="developer-image">
+                    <div class="developer-info">
+                        <h3>Hamdy Abu El-Khair</h3>
+                        <p>Full-stack Developer</p>
+                        <p>Contributed to the development of the STEM BNS website with expertise in both frontend and backend technologies.</p>
+                        <div class="developer-social">
+                            <a href="https://www.instagram.com/hamdiabuelkhair" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/+201060410426" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            <a href="tel:+201060410426"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:hamdyabuelkhair@gmail.com"><i class="fas fa-envelope"></i></a>
+                            <a href="https://github.com/ham0dy1457" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="developer-card">
+                    <img src="images/developers/abdelrahman.jpg" alt="Abd El-Rahman Khalaf" class="developer-image">
+                    <div class="developer-info">
+                        <h3>Abd El-Rahman Khalaf</h3>
+                        <p>Full-stack Developer</p>
+                        <p>Played a crucial role in developing the website's features and ensuring a seamless user experience.</p>
+                        <div class="developer-social">
+                            <a href="https://www.instagram.com/t._.m.x" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/+201279601902" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            <a href="tel:+201279601902"><i class="fas fa-phone"></i></a>
+                            <a href="mailto:abdokhalaf0889@gmail.com"><i class="fas fa-envelope"></i></a>
+                            <a href="https://github.com/ham0dy1457" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="thank-you">
+                <h2>Thank You</h2>
+                <p>We would like to express our deepest gratitude to Hamdy Abu El-Khair and Abd El-Rahman Khalaf for their exceptional work in developing the STEM BNS website. Their technical expertise, creativity, and dedication have been instrumental in creating a platform that serves our school community effectively.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Bani Sweif, Egypt</p>
+                    <p><i class="fas fa-phone"></i> +20 10 64803860</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bsweifsch@stembsweif.moe.edu.eg">bsweifsch@stembsweif.moe.edu.eg</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="news.html">News & Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/101524117903935" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/+201064803860" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:bsweifsch@stembsweif.moe.edu.eg"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 STEM Bani Sweif. All rights reserved.</p>
+                <p class="credits">Developed by <a href="developers.html">Hamdy Abu El-Khair & Abd El-Rahman Khalaf</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

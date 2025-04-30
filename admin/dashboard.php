@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - STEM Bani Sweif School</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="admin-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../images/logo.png" alt="STEM Bani Sweif Logo" class="logo-img">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="admin-nav">
+                <div class="admin-user">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Administrator</span>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-main">
+        <aside class="sidebar">
+            <ul class="admin-menu">
+                <li class="active">
+                    <a href="#dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#events">
+                        <i class="fas fa-calendar-alt"></i>
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="#feedback">
+                        <i class="fas fa-comments"></i>
+                        Feedback
+                    </a>
+                </li>
+                
+            </ul>
+        </aside>
+
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <div id="dashboardSection" class="section">
+                <div class="dashboard-header">
+                    <h2>Welcome to Admin Dashboard</h2>
+                </div>
+            </div>
+
+            <!-- Events Section -->
+            <div id="eventsSection" class="section" style="display: none;">
+                <div class="section-header">
+                    <h3>Manage Events</h3>
+                    <a href="add-event.php" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                        Add New Event
+                    </a>
+                </div>
+
+                <div id="eventsList" class="events-list">
+                    <!-- Events will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Event Template -->
+            <template id="eventTemplate">
+                <div class="event-card">
+                    <div class="event-date-badge">
+                        <span class="day"></span>
+                        <span class="month"></span>
+                    </div>
+                    <div class="event-content">
+                        <h3 class="event-title"></h3>
+                        <div class="event-details">
+                            <p class="event-time"><i class="fas fa-clock"></i> <span></span></p>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> <span></span></p>
+                            <p class="event-type"><i class="fas fa-tag"></i> <span></span></p>
+                            <p class="event-audience"><i class="fas fa-users"></i> <span></span></p>
+                        </div>
+                        <p class="event-description"></p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Feedback Section -->
+            <div id="feedbackSection" class="section" style="display: none;">
+                <div class="controls">
+                    <div class="filter-group">
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="complaint">Complaint</option>
+                            <option value="question">Question</option>
+                        </select>
+                        <select id="subjectFilter">
+                            <option value="">All Subjects</option>
+                            <option value="general">General</option>
+                            <option value="academic">Academic</option>
+                            <option value="technical">Technical</option>
+                        </select>
+                        <button id="clearFilters" class="clear-btn">
+                            <i class="fas fa-times"></i>
+                            Clear Filters
+                        </button>
+                    </div>
+                    <div class="action-group">
+                        <button id="exportBtn" class="export-btn">
+                            <i class="fas fa-file-export"></i>
+                            Export to Excel
+                        </button>
+                        <button id="deleteAllBtn" class="delete-btn">
+                            <i class="fas fa-trash-alt"></i>
+                            Delete All
+                        </button>
+                    </div>
+                </div>
+
+                <div id="feedbackList" class="feedback-list">
+                    <!-- Feedback items will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settingsSection" class="section" style="display: none;">
+                <div class="section-header">
+                    <h3>Settings</h3>
+                </div>
+                <!-- Settings content will go here -->
+            </div>
+
+            <!-- Add/Edit Event Modal -->
+            <div id="eventModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3 id="modalTitle">Add New Event</h3>
+                    <form id="eventForm">
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" id="eventTitle" name="eventTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="datetime-local" id="eventDate" name="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventLocation">Location</label>
+                            <input type="text" id="eventLocation" name="eventLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <textarea id="eventDescription" name="eventDescription" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventImage">Event Image</label>
+                            <input type="file" id="eventImage" name="eventImage" accept="image/*">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">Save Event</button>
+                            <button type="button" class="cancel-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Confirmation Dialog -->
+    <div id="confirmDialog" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Action</h3>
+            <p>Are you sure you want to proceed with this action?</p>
+            <div class="modal-actions">
+                <button id="confirmYes" class="confirm-btn">Yes</button>
+                <button id="confirmNo" class="cancel-btn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Item Template -->
+    <template id="feedbackTemplate">
+        <div class="feedback-item">
+            <div class="feedback-header">
+                <div class="feedback-meta">
+                    <span class="name"></span>
+                    <span class="category"></span>
+                    <span class="subject"></span>
+                    <span class="timestamp"></span>
+                </div>
+                <div class="feedback-actions">
+                    <button class="delete-feedback">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="message"></div>
+        </div>
+    </template>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    <!-- Firebase Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAL01JTNRi9mTaOBIX39_2wEWVZ5KltYeE",
+            authDomain: "stem-3cd9d.firebaseapp.com",
+            projectId: "stem-3cd9d",
+            storageBucket: "stem-3cd9d.firebasestorage.app",
+            messagingSenderId: "968751445623",
+            appId: "1:968751445623:web:f35abac57d17cdc47ff872",
+            measurementId: "G-ECHP46C9J4"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics();
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+    </script>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/events.js"></script>
+</body>
+</html> 
